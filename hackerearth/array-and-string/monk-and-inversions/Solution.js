@@ -16,7 +16,7 @@ process.stdin.on('end', function () {
  */
 function parseInput(input) {
   const words = input.split(/\s+/);
-  const inputArr = words.map(word => (isNaN(parseInt(word)) ? word : parseInt(word)));
+  const inputArr = words.map((word) => (isNaN(parseInt(word)) ? word : parseInt(word)));
   return inputArr;
 }
 
@@ -64,8 +64,8 @@ function solution(n, arr) {
 function inversionResult(row, column, arr) {
   let cellPairs = 0;
   const val = arr[row][column];
-  for (let rowIndex = 0; rowIndex < row; rowIndex++) {
-    for (let columnIndex = 0; columnIndex < column; columnIndex++) {
+  for (let rowIndex = 0; rowIndex <= row; rowIndex++) {
+    for (let columnIndex = 0; columnIndex <= column; columnIndex++) {
       const currVal = arr[rowIndex][columnIndex];
       if (currVal > val) cellPairs++;
     }
@@ -78,12 +78,12 @@ function inversionResult(row, column, arr) {
  * @param {string} input
  */
 function main(input) {
-  const inputArr = parseInput(input);
+  let inputArr = parseInput(input);
   const numberOfTestCases = inputArr.shift();
   for (let index = 0; index < numberOfTestCases; index++) {
     const n = inputArr.shift();
     const arr = inputArr.slice(0, n * n);
-    inputArr.shift(n * n);
+    inputArr = inputArr.slice(n * n);
     solution(n, arr);
   }
 }
