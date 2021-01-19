@@ -46,6 +46,31 @@ function convert1DTo2D(row, column, arr1D) {
  */
 function solution(n, arr) {
   const matrix = convert1DTo2D(n, n, arr);
+  let result = 0;
+  for (let rowIndex = 0; rowIndex < n; rowIndex++) {
+    for (let columnIndex = 0; columnIndex < n; columnIndex++) {
+      result += inversionResult(rowIndex, columnIndex, matrix);
+    }
+  }
+  console.log(result);
+}
+
+/**
+ *
+ * @param {number} row
+ * @param {number} column
+ * @param  {number[][]} arr
+ */
+function inversionResult(row, column, arr) {
+  let cellPairs = 0;
+  const val = arr[row][column];
+  for (let rowIndex = 0; rowIndex < row; rowIndex++) {
+    for (let columnIndex = 0; columnIndex < column; columnIndex++) {
+      const currVal = arr[rowIndex][columnIndex];
+      if (currVal > val) cellPairs++;
+    }
+  }
+  return cellPairs;
 }
 
 /**
